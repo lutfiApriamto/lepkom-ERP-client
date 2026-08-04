@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* -----------------------------------------------------
+       1. Base Brand Guidelines CSS Variables (LepKOM)
+    ----------------------------------------------------- */
+    --brand-green: #156935;
+    --brand-blue: #23376c;
+    --bg-page: #F3F6FB;
+    --bg-surface: #FFFFFF;
+    --border-default: #E5E7EB;
+    --text-primary: #111827;
+    --status-green: #10B981;
+    --status-yellow: #F59E0B;
+    --status-red: #EF4444;
+  }
+  
+  /* Menerapkan font dan warna latar utama ke body */
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* -----------------------------------------------------
+   2. Konfigurasi Tailwind v4 (Menggantikan tailwind.config.ts)
+----------------------------------------------------- */
+@theme {
+  --font-sans: "Inter", sans-serif;
+  
+  /* Akses Warna Khusus LepKom via utilitas (contoh: bg-lepkom-green) */
+  --color-lepkom-green: var(--brand-green);
+  --color-lepkom-blue: var(--brand-blue);
+  --color-status-green: var(--status-green);
+  --color-status-yellow: var(--status-yellow);
+  --color-status-red: var(--status-red);
+
+  /* Semantic Mapping untuk Komponen Shadcn UI agar selaras dengan Brand */
+  --color-background: var(--bg-page);
+  --color-foreground: var(--text-primary);
+
+  --color-card: var(--bg-surface);
+  --color-card-foreground: var(--text-primary);
+
+  --color-popover: var(--bg-surface);
+  --color-popover-foreground: var(--text-primary);
+
+  --color-primary: var(--brand-green);
+  --color-primary-foreground: #FFFFFF;
+
+  --color-secondary: var(--brand-blue);
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-muted: #F9FAFB; /* Gray-50 */
+  --color-muted-foreground: #6B7280; /* Gray-500 */
+
+  --color-accent: #F3F4F6; /* Gray-100 */
+  --color-accent-foreground: var(--text-primary);
+
+  --color-destructive: var(--status-red);
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-border: var(--border-default);
+  --color-input: var(--border-default);
+  --color-ring: var(--brand-green);
+
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+}
+
+/* -----------------------------------------------------
+   3. Global Interactive Cursor Styles
+----------------------------------------------------- */
+button,
+[role="button"],
+a,
+select,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+label[for] {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"],
+input:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
