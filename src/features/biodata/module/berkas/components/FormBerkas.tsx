@@ -1,4 +1,3 @@
-import React from 'react';
 import { toast } from 'react-hot-toast';
 import { Button } from '@/components/ui/Button';
 import { FiEdit2, FiSave, FiX } from 'react-icons/fi';
@@ -31,12 +30,13 @@ const FormBerkas = () => {
   const handleCancelClick = () => {
     if (hasUnsavedChanges) {
       setAlert({
-        isOpen: true,
-        title: 'Batalkan Perubahan?',
-        description: 'Anda memiliki file yang sudah diunggah tetapi belum disimpan. Jika Anda membatalkannya, file tersebut akan dihapus.',
         type: 'warning',
-        confirmText: 'Ya, Batalkan',
-        cancelText: 'Kembali',
+        text: {
+          heading: 'Batalkan Perubahan?',
+          body: 'Anda memiliki file yang sudah diunggah tetapi belum disimpan. Jika Anda membatalkannya, file tersebut akan dihapus.',
+        },
+        btnTrue: { text: 'Ya, Batalkan' },
+        btnFalse: { text: 'Kembali' },
         onTrueCallback: async () => {
           try {
             if (tempCv) await deleteTempMutation.mutateAsync(tempCv);

@@ -1,8 +1,6 @@
-import type { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/Button';
 import { DownloadCloud } from 'lucide-react';
 import { downloadJawabanFile } from '../api/checkUpload.api';
-import type { JawabanUpload } from '../api/checkUpload.api';
 import dayjs from 'dayjs';
 import 'dayjs/locale/id';
 import toast from 'react-hot-toast';

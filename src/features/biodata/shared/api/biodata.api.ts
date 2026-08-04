@@ -118,7 +118,8 @@ export const useDeletePermanentDokumen = () => {
 export const downloadDokumen = async (jenisDokumen: 'cv' | 'krs' | 'rangkumanNilai', filename?: string) => {
   const urlParam = jenisDokumen === 'rangkumanNilai' ? 'rangkuman-nilai' : jenisDokumen;
   const res = await api.get<ApiResponse<{ signedUrl: string }>>(`/api/calas/me/biodata/dokumen/${urlParam}/download`);
-  const downloadUrl = res.data.data.signedUrl;
+  const downloadUrl = res.data.data?.signedUrl;
+  if (!downloadUrl) throw new Error('Gagal mendapatkan URL dokumen dari server');
   
   const link = document.createElement('a');
   link.href = downloadUrl;

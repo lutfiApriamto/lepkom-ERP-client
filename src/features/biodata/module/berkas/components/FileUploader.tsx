@@ -60,7 +60,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 
     try {
       const res = await uploadTempMutation.mutateAsync({ jenisDokumen, file });
-      onTempUrlChange(res.fileUrl);
+      onTempUrlChange(res?.fileUrl || null);
       setSelectedFile(file);
       toast.success('File berhasil diunggah secara sementara');
     } catch (error: any) {
@@ -84,12 +84,13 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 
   const handleDeletePermanent = () => {
     setAlert({
-      isOpen: true,
-      title: 'Hapus File Permanen?',
-      description: 'Apakah Anda yakin ingin menghapus file ini? Tindakan ini akan menghapus file dari database dan storage secara permanen dan tidak dapat dibatalkan.',
-      type: 'danger',
-      confirmText: 'Ya, Hapus Permanen',
-      cancelText: 'Batal',
+      type: 'warning',
+      text: {
+        heading: 'Hapus File Permanen?',
+        body: 'Apakah Anda yakin ingin menghapus file ini? Tindakan ini akan menghapus file dari database dan storage secara permanen dan tidak dapat dibatalkan.',
+      },
+      btnTrue: { text: 'Ya, Hapus Permanen' },
+      btnFalse: { text: 'Batal' },
       onTrueCallback: async () => {
         try {
           await deletePermanentMutation.mutateAsync(jenisDokumen);

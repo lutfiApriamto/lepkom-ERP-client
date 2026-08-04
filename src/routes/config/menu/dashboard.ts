@@ -1,6 +1,5 @@
 import { path } from '@/utils/consts';
 import { MdDashboard } from 'react-icons/md';
-import { HiSpeakerphone } from 'react-icons/hi';
 
 export const dashboardMenu = {
   label: 'Dashboard',
